@@ -1,6 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
+from notifica.views.VistaNotifica import Ui_VistaNotifica
+
+
 class Ui_VistaGestionePesca(object):
     def setupUi(self, VistaGestionePesca):
         VistaGestionePesca.setObjectName("VistaGestionePesca")
@@ -39,16 +42,18 @@ class Ui_VistaGestionePesca(object):
         self.button_notifica.setObjectName("button_notifica")
         self.gridLayout_2.addWidget(self.button_notifica, 1, 0, 1, 1)
 
+        self.button_notifica.clicked.connect(self.show_notifica)
+
         self.verticalLayout.addLayout(self.gridLayout_2)
 
         self.retranslateUi(VistaGestionePesca)
         QtCore.QMetaObject.connectSlotsByName(VistaGestionePesca)
 
-        def show_notifica():
-            vista_notifica = QtWidgets.QWidget()
-            ui = Ui_VistaNotifica
-            ui.setupUi(vista_notifica)
-            vista_notifica.show()
+    def show_notifica(self):
+        self.vista_notifica = QtWidgets.QWidget()
+        self.ui = Ui_VistaNotifica()
+        self.ui.setupUi(self.vista_notifica)
+        self.vista_notifica.show()
 
     def retranslateUi(self, VistaGestionePesca):
         _translate = QtCore.QCoreApplication.translate
