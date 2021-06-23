@@ -1,0 +1,44 @@
+from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QApplication
+import sys
+
+class VistaHome(QWidget):
+    def __init__(self, parent=None):
+        super(VistaHome, self).__init__(parent)
+        grid_layout = QGridLayout()
+        grid_layout.addWidget(self.pulsante_generico("Gestione barche", self.go_gestione_barche), 0, 0)
+        grid_layout.addWidget(self.pulsante_generico("Meteo", self.go_meteo), 0, 1)
+        grid_layout.addWidget(self.pulsante_generico("Gestione pesca", self.go_gestione_pesca), 1, 0)
+        grid_layout.addWidget(self.pulsante_generico("Supervisione", self.go_supervisione), 1, 1)
+        grid_layout.setSpacing(30)
+        grid_layout.setContentsMargins(30, 30, 30, 30)
+
+        self.setLayout(grid_layout)
+        self.resize(1200, 800)
+        self.setWindowTitle("Co.Vo.Pi. Software")
+
+    def pulsante_generico(self, titolo, on_click):
+        button = QPushButton(titolo)
+        button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        button.setFont(QFont('Times', 16))
+        button.setStyleSheet("font-weight: bold")
+        button.clicked.connect(on_click)
+        return button
+
+    def go_gestione_barche(self):
+        pass #scrivere funzione
+
+    def go_meteo(self):
+        pass #scrivere funzione
+
+    def go_gestione_pesca(self):
+        pass #scrivere funzione
+
+    def go_supervisione(self):
+        pass #scrivere funzione
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    vista_home = VistaHome()
+    vista_home.show()
+    sys.exit(app.exec())
